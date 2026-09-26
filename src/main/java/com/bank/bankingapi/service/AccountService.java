@@ -29,6 +29,10 @@ public class AccountService {
         account.setOwnerName(newAccount.getOwnerName());
         return accountRepository.save(account);
     }
+    public void deleteAccountById(Long id){
+        accountRepository.deleteById(id);
+    }
+
 
 
 
