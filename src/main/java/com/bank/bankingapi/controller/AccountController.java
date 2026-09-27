@@ -10,7 +10,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 @RestController
 @RequestMapping("/api/accounts")
-public class AccountController {
+public class
+AccountController {
     private final AccountService accountService;
     public AccountController(AccountService accountService){
         this.accountService=accountService;
