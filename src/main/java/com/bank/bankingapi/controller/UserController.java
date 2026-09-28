@@ -12,8 +12,12 @@ public class UserController {
         this.userService=userService;
     }
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public User register(@RequestBody User user){
-        return userService.createUser(user);
+    public ResponseEntity<User> register(@RequestBody User user){
+        User createdUser=userService.createUser(user);
+        if(createdUser==null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+
     }
 }
