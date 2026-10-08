@@ -21,6 +21,18 @@ public class UserService {
         user.setPassword(hashedPassword);
         return userRepository.save(user);
     }
+    public User login(String email,String password){
+        Optional<User> existingUser=userRepository.findByEmail(email);
+        if(existingUser.isEmpty()){
+            return null;
+        }
+        User user=existingUser.get();
+        if(!passwordEncoder.matches(password,user.getPassword())){
+            return null;
+        }
+        return user;
+    }
+
 
 
 }

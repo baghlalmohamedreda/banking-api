@@ -20,4 +20,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 
     }
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User user){
+        User existingUser =userService.login(user.getEmail(),user.getPassword());
+        if(existingUser==null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(existingUser);
+    }
+
 }
